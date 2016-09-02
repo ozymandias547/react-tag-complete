@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box; }
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0; }
+
+* html .clearfix {
+    zoom: 1; }
+
+/* IE6 */
+*:first-child + html .clearfix {
+    zoom: 1; }
+
+/* IE7 */
+body {
+    color: red;
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    -webkit-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0; }
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-align: center;
+    margin: 1.5rem 0; }
+
+strong {
+    font-weight: 500; }
+
+.container {
+    width: 50%;
+    min-height: 300px;
+}
