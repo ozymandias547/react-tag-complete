@@ -3,7 +3,7 @@ react-tag-complete component similar to gmail's email address input box.
 
 [Demo](https://ozymandias547.github.io/react-tag-complete/)
 
-<img alt='react tag complete' src="http://imgur.com/TBGt43u" width="890">
+<img alt='react tag complete' src="http://i.imgur.com/TBGt43u.png" width="890">
 
 
 ## Installation
