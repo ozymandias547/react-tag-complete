@@ -19834,9 +19834,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ReactTagComplete = __webpack_require__(165);
+	var _lib = __webpack_require__(165);
 	
-	var _ReactTagComplete2 = _interopRequireDefault(_ReactTagComplete);
+	var _lib2 = _interopRequireDefault(_lib);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -19878,7 +19878,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'basic-container' },
-	          _react2.default.createElement(_ReactTagComplete2.default, { tags: this.state.tags,
+	          _react2.default.createElement(_lib2.default, { tags: this.state.tags,
 	            suggestions: this.state.suggestions,
 	            onTagDeleted: function onTagDeleted(tag) {
 	              return _this2.onTagDeleted(tag);
@@ -20544,9 +20544,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ReactTagComplete = __webpack_require__(165);
+	var _lib = __webpack_require__(165);
 	
-	var _ReactTagComplete2 = _interopRequireDefault(_ReactTagComplete);
+	var _lib2 = _interopRequireDefault(_lib);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -20589,7 +20589,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'email-container' },
-	          _react2.default.createElement(_ReactTagComplete2.default, { tags: this.state.toEmails,
+	          _react2.default.createElement(_lib2.default, { tags: this.state.toEmails,
 	            suggestions: this.state.suggestions,
 	            onTagDeleted: function onTagDeleted(tag) {
 	              return _this2.onToEmailDeleted(tag);
@@ -20602,7 +20602,7 @@
 	            autoresize: false,
 	            placeholder: 'recipients...',
 	            label: 'To: ' }),
-	          _react2.default.createElement(_ReactTagComplete2.default, { tags: this.state.ccEmails,
+	          _react2.default.createElement(_lib2.default, { tags: this.state.ccEmails,
 	            suggestions: this.state.suggestions,
 	            onTagDeleted: function onTagDeleted(tag) {
 	              return _this2.onCCEmailDeleted(tag);

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTagComplete from '../../lib/ReactTagComplete';
+import ReactTagComplete from '../../lib/';
 
 class BasicExample extends React.Component {
 
