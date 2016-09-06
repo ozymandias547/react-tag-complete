@@ -5,13 +5,17 @@
   border-radius: 5px;
   font-size: 11px;
   line-height: 1.2;
-  cursor: text;
-  height: 300px; }
+  cursor: text; }
   .react-tag-complete.is-focused {
     border-color: #5071FF;
     box-shadow: 0px 0px 2px 0px rgba(80, 113, 255, 0.59); }
   .react-tag-complete .react-tags__selected {
     display: inline; }
+  .react-tag-complete .react-tags__label {
+    display: inline-block;
+    padding: 6px 8px;
+    font-size: inherit;
+    line-height: inherit; }
   .react-tag-complete .react-tags__selected-tag {
     display: inline-block;
     box-sizing: border-box;

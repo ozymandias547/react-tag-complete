@@ -64,10 +64,19 @@
 	
 	var _basic2 = _interopRequireDefault(_basic);
 	
+	var _email = __webpack_require__(169);
+	
+	var _email2 = _interopRequireDefault(_email);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	(0, _domready2.default)(function () {
-		_reactDom2.default.render(_react2.default.createElement(_basic2.default, null), document.querySelector(".reactApp"));
+		_reactDom2.default.render(_react2.default.createElement(
+			'div',
+			null,
+			_react2.default.createElement(_basic2.default, null),
+			_react2.default.createElement(_email2.default, null)
+		), document.querySelector(".reactApp"));
 	});
 
 /***/ },
@@ -19819,6 +19828,8 @@
 	  value: true
 	});
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _react = __webpack_require__(6);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -19829,72 +19840,85 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var BasicExample = _react2.default.createClass({
-	  displayName: 'BasicExample',
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	  getInitialState: function getInitialState() {
-	    return {
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var BasicExample = function (_React$Component) {
+	  _inherits(BasicExample, _React$Component);
+	
+	  function BasicExample(props) {
+	    _classCallCheck(this, BasicExample);
+	
+	    var _this = _possibleConstructorReturn(this, (BasicExample.__proto__ || Object.getPrototypeOf(BasicExample)).call(this, props));
+	
+	    _this.state = {
 	      tags: [{ id: 1, name: "_DEVICE_83994" }, { id: 2, name: "_DEVICE_89949" }],
 	      suggestions: [{ id: 1, name: "_DEVICE_83994" }, { id: 2, name: "_DEVICE_89949" }, { id: 3, name: "_DEVICE_12345" }, { id: 4, name: "_DEVICE_13451" }, { id: 5, name: "_DEVICE_10498" }, { id: 6, name: "_DEVICE_088429" }, { id: 7, name: "_DEVICE_123745" }, { id: 8, name: "_DEVICE_134561" }, { id: 9, name: "_DEVICE_105498" }, { id: 10, name: "_DEVICE_084329" }]
 	    };
-	  },
 	
-	  handleDelete: function handleDelete(i) {
-	    var tags = this.state.tags;
-	    tags.splice(i, 1);
-	    this.setState({ tags: tags });
-	  },
-	
-	  handleAddition: function handleAddition(tag) {
-	
-	    var tags = this.state.tags;
-	
-	    tags.push({
-	      id: tag.id || parseInt(Math.random() * 10000),
-	      name: tag.name
-	    });
-	
-	    this.setState({ tags: tags });
-	  },
-	
-	  handleDrag: function handleDrag(tag, currPos, newPos) {
-	    var tags = this.state.tags;
-	
-	    // mutate array
-	    tags.splice(currPos, 1);
-	    tags.splice(newPos, 0, tag);
-	
-	    // re-render
-	    this.setState({ tags: tags });
-	  },
-	
-	  render: function render() {
-	
-	    var tags = this.state.tags;
-	    var suggestions = this.state.suggestions;
-	
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement(
-	        'h2',
-	        null,
-	        'react-tag-complete'
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'container' },
-	        _react2.default.createElement(_ReactTagComplete2.default, { tags: tags,
-	          suggestions: suggestions,
-	          handleDelete: this.handleDelete,
-	          handleAddition: this.handleAddition,
-	          handleDrag: this.handleDrag,
-	          allowNew: true })
-	      )
-	    );
+	    return _this;
 	  }
-	});
+	
+	  _createClass(BasicExample, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+	
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Tagging'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'basic-container' },
+	          _react2.default.createElement(_ReactTagComplete2.default, { tags: this.state.tags,
+	            suggestions: this.state.suggestions,
+	            onTagDeleted: function onTagDeleted(tag) {
+	              return _this2.onTagDeleted(tag);
+	            },
+	            onTagAdded: function onTagAdded(tag) {
+	              return _this2.onTagAdded(tag);
+	            },
+	            allowNew: true,
+	            autofocus: false,
+	            autoresize: true })
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'onTagDeleted',
+	    value: function onTagDeleted(i) {
+	
+	      var tags = this.state.tags;
+	      tags.splice(i, 1);
+	      this.setState({ tags: tags });
+	    }
+	  }, {
+	    key: 'onTagAdded',
+	    value: function onTagAdded(tag) {
+	
+	      var tags = this.state.tags;
+	
+	      tags.push({
+	        id: tag.id || parseInt(Math.random() * 10000),
+	        name: tag.name
+	      });
+	
+	      this.setState({
+	        tags: tags
+	      });
+	    }
+	  }]);
+	
+	  return BasicExample;
+	}(_react2.default.Component);
 	
 	exports.default = BasicExample;
 
@@ -19976,6 +20000,7 @@
 	      cursorPosition: 0,
 	      classNames: Object.assign({}, CLASS_NAMES, _this.props.classNames)
 	    };
+	
 	    return _this;
 	  }
 	
@@ -20048,54 +20073,16 @@
 	        e.preventDefault();
 	        this.setState({ selectedIndex: (selectedIndex + 1) % this.suggestions.state.options.length });
 	      }
-	    }
-	  }, {
-	    key: 'onKeyDown',
-	    value: function onKeyDown(e) {
+	
 	      if (e.keyCode === KEYS.LEFT_ARROW) {
-	
-	        if (this.state.cursorPosition > this.props.tags.length - 1) return;
-	
-	        this.setState({ cursorPosition: this.state.cursorPosition + 1 });
-	
-	        if (this.state.cursorPosition + 1 === 0) {
-	          this.input.input.focus();
-	        } else {
-	          this.input.input.blur();
-	        }
-	      }
-	
-	      if (e.keyCode === KEYS.RIGHT_ARROW) {
-	
-	        if (this.state.cursorPosition < 1) return;
-	
+	        e.preventDefault();
 	        this.setState({ cursorPosition: this.state.cursorPosition - 1 });
-	
-	        if (this.state.cursorPosition === 0) {
-	          this.input.input.focus();
-	        }
 	      }
-	
-	      if (e.keyCode === KEYS.BACKSPACE) {
-	        if (this.state.inputFocused === false) {
-	          this.deleteTag(this.props.tags.length - this.state.cursorPosition);
-	        }
-	      }
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      document.removeEventListener("keydown", this.onKeyDown);
-	    }
-	  }, {
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      this.onKeyDown = this.onKeyDown.bind(this);
-	      document.addEventListener("keydown", this.onKeyDown);
 	    }
 	  }, {
 	    key: 'handleClick',
 	    value: function handleClick(e) {
+	
 	      if (document.activeElement !== e.target) {
 	        this.input.input.focus();
 	
@@ -20107,7 +20094,7 @@
 	  }, {
 	    key: 'handleBlur',
 	    value: function handleBlur() {
-	      this.setState({ focused: false, selectedIndex: -1 });
+	      this.setState({ focused: false, selectedIndex: -1, cursorPosition: 0 });
 	    }
 	  }, {
 	    key: 'handleFocus',
@@ -20133,7 +20120,7 @@
 	        }
 	      }
 	
-	      this.props.handleAddition(tag);
+	      this.props.onTagAdded(tag);
 	
 	      // reset the state
 	      this.setState({
@@ -20144,7 +20131,7 @@
 	  }, {
 	    key: 'deleteTag',
 	    value: function deleteTag(i) {
-	      this.props.handleDelete(i);
+	      this.props.onTagDeleted(i);
 	      this.setState({ query: '' });
 	    }
 	  }, {
@@ -20154,7 +20141,7 @@
 	      e.stopPropagation();
 	
 	      this.setState({
-	        cursorPosition: this.props.tags.length - i
+	        cursorPosition: this.props.tags.length - i, focused: true
 	      });
 	
 	      this.input.input.blur();
@@ -20173,8 +20160,6 @@
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
-	
-	      console.log(this.state.cursorPosition);
 	
 	      var listboxId = 'ReactTags-listbox';
 	
@@ -20210,6 +20195,11 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: classNames.join(' '), onClick: this.handleClick.bind(this) },
+	        this.props.label && _react2.default.createElement(
+	          'div',
+	          { className: 'react-tags__label' },
+	          this.props.label
+	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: this.state.classNames.selected, 'aria-live': 'polite', 'aria-relevant': 'additions removals' },
@@ -20231,7 +20221,9 @@
 	            autofocus: this.props.autofocus,
 	            autoresize: this.props.autoresize,
 	            expandable: expandable,
-	            placeholder: this.props.placeholder, onFocus: this.onInputFocus.bind(this), onBlur: this.onInputBlur.bind(this) })),
+	            placeholder: this.props.placeholder,
+	            onFocus: this.onInputFocus.bind(this),
+	            onBlur: this.onInputBlur.bind(this) })),
 	          _react2.default.createElement(_Suggestions2.default, _extends({}, this.state, {
 	            ref: function ref(c) {
 	              _this2.suggestions = c;
@@ -20258,17 +20250,19 @@
 	  minQueryLength: 1,
 	  maxSuggestionsLength: 6,
 	  allowNew: false,
-	  allowDuplicates: false
+	  allowDuplicates: false,
+	  label: false
 	};
 	
 	ReactTagComplete.propTypes = {
 	  tags: _react2.default.PropTypes.array,
 	  placeholder: _react2.default.PropTypes.string,
+	  label: _react2.default.PropTypes.string,
 	  suggestions: _react2.default.PropTypes.array,
 	  autofocus: _react2.default.PropTypes.bool,
 	  autoresize: _react2.default.PropTypes.bool,
-	  handleDelete: _react2.default.PropTypes.func.isRequired,
-	  handleAddition: _react2.default.PropTypes.func.isRequired,
+	  onTagDeleted: _react2.default.PropTypes.func.isRequired,
+	  onTagAdded: _react2.default.PropTypes.func.isRequired,
 	  handleInputChange: _react2.default.PropTypes.func,
 	  minQueryLength: _react2.default.PropTypes.number,
 	  maxSuggestionsLength: _react2.default.PropTypes.number,
@@ -20533,6 +20527,147 @@
 	}(React.Component);
 	
 	module.exports = Suggestions;
+
+/***/ },
+/* 169 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(6);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _ReactTagComplete = __webpack_require__(165);
+	
+	var _ReactTagComplete2 = _interopRequireDefault(_ReactTagComplete);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var EmailExample = function (_React$Component) {
+	  _inherits(EmailExample, _React$Component);
+	
+	  function EmailExample(props) {
+	    _classCallCheck(this, EmailExample);
+	
+	    var _this = _possibleConstructorReturn(this, (EmailExample.__proto__ || Object.getPrototypeOf(EmailExample)).call(this, props));
+	
+	    _this.state = {
+	      toEmails: [{ id: 1, name: "larry.page@wherever.com" }, { id: 1, name: "john.olligver@how.com" }],
+	      ccEmails: [{ id: 2, name: "bob@hope.com" }],
+	      suggestions: [{ id: 2, name: "bob@hope.com" }, { id: 1, name: "larry.page@wherever.com" }, { id: 3, name: "john.olligver@how.com" }]
+	    };
+	
+	    return _this;
+	  }
+	
+	  _createClass(EmailExample, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+	
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Gmail style'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'email-container' },
+	          _react2.default.createElement(_ReactTagComplete2.default, { tags: this.state.toEmails,
+	            suggestions: this.state.suggestions,
+	            onTagDeleted: function onTagDeleted(tag) {
+	              return _this2.onToEmailDeleted(tag);
+	            },
+	            onTagAdded: function onTagAdded(tag) {
+	              return _this2.onToEmailAdded(tag);
+	            },
+	            allowNew: true,
+	            autofocus: false,
+	            autoresize: false,
+	            placeholder: 'recipients...',
+	            label: 'To: ' }),
+	          _react2.default.createElement(_ReactTagComplete2.default, { tags: this.state.ccEmails,
+	            suggestions: this.state.suggestions,
+	            onTagDeleted: function onTagDeleted(tag) {
+	              return _this2.onCCEmailDeleted(tag);
+	            },
+	            onTagAdded: function onTagAdded(tag) {
+	              return _this2.onCCEmailAdded(tag);
+	            },
+	            allowNew: true,
+	            autofocus: false,
+	            autoresize: false,
+	            placeholder: 'recipients...',
+	            label: 'cc: ' })
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'onToEmailDeleted',
+	    value: function onToEmailDeleted(i) {
+	      var toEmails = this.state.toEmails;
+	      toEmails.splice(i, 1);
+	      this.setState({ toEmails: toEmails });
+	    }
+	  }, {
+	    key: 'onToEmailAdded',
+	    value: function onToEmailAdded(toEmail) {
+	
+	      var toEmails = this.state.toEmails;
+	
+	      toEmails.push({
+	        id: toEmail.id || parseInt(Math.random() * 10000),
+	        name: toEmail.name
+	      });
+	
+	      this.setState({
+	        toEmails: toEmails
+	      });
+	    }
+	  }, {
+	    key: 'onCCEmailDeleted',
+	    value: function onCCEmailDeleted(i) {
+	      var ccEmails = this.state.ccEmails;
+	      ccEmails.splice(i, 1);
+	      this.setState({ ccEmails: ccEmails });
+	    }
+	  }, {
+	    key: 'onCCEmailAdded',
+	    value: function onCCEmailAdded(ccEmail) {
+	
+	      var ccEmails = this.state.ccEmails;
+	
+	      ccEmails.push({
+	        id: ccEmail.id || parseInt(Math.random() * 10000),
+	        name: ccEmail.name
+	      });
+	
+	      this.setState({
+	        ccEmails: ccEmails
+	      });
+	    }
+	  }]);
+	
+	  return EmailExample;
+	}(_react2.default.Component);
+	
+	exports.default = EmailExample;
 
 /***/ }
 /******/ ]);
