@@ -36,8 +36,21 @@ h2, h1 {
 strong {
     font-weight: 500; }
 
-.container {
-    min-height: 300px;
-    margin: 150px;
+.basic-container {
+    margin: 100px;
     margin-top: 50px;
+}
+
+.email-container {
+    height: 70px;
+    margin: 100px;
+    margin-top: 50px;
+}
+
+.react-tag-complete {
+    margin-bottom: 10px;
+}
+
+input[type=text] {
+    background: green;
 }

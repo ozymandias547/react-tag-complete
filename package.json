@@ -9,7 +9,7 @@
     "test": "cd build && karma start",
     "clean": "./build/scripts/clean.sh",
     "publish": "npm run clean && ./build/scripts/copy.sh && webpack --config ./build/webpack.config.js --buildstatic",
-    "example": "webpack-dev-server --colors --no-info --config ./build/webpack.config.js --port 8883 & sleep 1 && open -a \"Google Chrome\" http://localhost:8883/example & wait"
+    "example": "webpack-dev-server --colors --no-info --config ./build/webpack.config.js --port 8883 & sleep 1 && open -a \"Google Chrome\" http://localhost:8883/ & wait"
   },
   "devDependencies": {
     "babel-core": "^6.5.2",

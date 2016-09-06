@@ -7,7 +7,6 @@
   font-size: 11px;
   line-height: 1.2;
   cursor: text;
-  height: 300px;
 
   &.is-focused {
     border-color: #5071FF;
@@ -16,6 +15,13 @@
 
   .react-tags__selected {
     display: inline;
+  }
+
+  .react-tags__label {
+    display: inline-block;
+    padding: 6px 8px;
+    font-size: inherit;
+    line-height: inherit;
   }
 
   .react-tags__selected-tag {

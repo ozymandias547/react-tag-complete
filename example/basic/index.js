@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactTagComplete from '../../lib/ReactTagComplete';
 
-const BasicExample = React.createClass({
+class BasicExample extends React.Component {
 
-  getInitialState: function () {
-    return {
+  constructor(props) {
+
+    super(props);
+
+    this.state = {
       tags: [
         {id: 1, name: "_DEVICE_83994"},
         {id: 2, name: "_DEVICE_89949"}
@@ -22,15 +25,35 @@ const BasicExample = React.createClass({
         {id: 10, name: "_DEVICE_084329"}
       ]
     }
-  },
 
-  handleDelete: function (i) {
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>Tagging</h2>
+        <div className="basic-container">
+          <ReactTagComplete tags={this.state.tags}
+                            suggestions={this.state.suggestions}
+                            onTagDeleted={(tag) => (this.onTagDeleted(tag) )}
+                            onTagAdded={(tag) => (this.onTagAdded(tag) )}
+                            allowNew={true}
+                            autofocus={false}
+                            autoresize={true}/>
+        </div>
+      </div>
+    )
+  }
+
+  onTagDeleted(i) {
+
     let tags = this.state.tags;
     tags.splice(i, 1);
     this.setState({tags: tags});
-  },
 
-  handleAddition: function (tag) {
+  }
+
+  onTagAdded(tag) {
 
     let tags = this.state.tags;
 
@@ -39,40 +62,11 @@ const BasicExample = React.createClass({
       name: tag.name
     });
 
-    this.setState({tags: tags});
-
-  },
-
-  handleDrag: function (tag, currPos, newPos) {
-    let tags = this.state.tags;
-
-    // mutate array
-    tags.splice(currPos, 1);
-    tags.splice(newPos, 0, tag);
-
-    // re-render
-    this.setState({tags: tags});
-  },
-
-  render: function () {
-
-    let tags = this.state.tags;
-    let suggestions = this.state.suggestions;
-
-    return (
-      <div>
-        <h2>react-tag-complete</h2>
-        <div className="container">
-          <ReactTagComplete tags={tags}
-                            suggestions={suggestions}
-                            handleDelete={this.handleDelete}
-                            handleAddition={this.handleAddition}
-                            handleDrag={this.handleDrag}
-                            allowNew={true} />
-        </div>
-      </div>
-    )
+    this.setState({
+      tags: tags
+    });
   }
-});
+
+}
 
 export default BasicExample;

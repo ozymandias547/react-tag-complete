@@ -28,9 +28,9 @@ module.exports = {
     ]
   },
   output: {
-    filename: isBuildStatic ? 'example/bundle.js' : 'bundle.js'
+    filename: isBuildStatic ? 'example/bundle.js' : 'example/bundle.js'
   },
   plugins: [
-    new ExtractTextPlugin(isBuildStatic ? 'example/bundle.css' : 'bundle.css')
+    new ExtractTextPlugin(isBuildStatic ? 'example/bundle.css' : 'example/bundle.css')
   ]
 };
